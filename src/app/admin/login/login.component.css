@@ -29,7 +29,7 @@ input[type=text], input[type=password] {
   
   /* Set a style for all buttons */
   button {
-    background-color: #04AA6D;
+    background-color: blue;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -61,8 +61,16 @@ input[type=text], input[type=password] {
     border-radius: 50%;
   }
   
+  .main-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Ensures the container takes up the full height of the viewport */
+  }
+
   .container {
     padding: 16px;
+    /* Any additional styles for content before the login modal */ 
   }
   
   span.psw {
@@ -136,7 +144,11 @@ input[type=text], input[type=password] {
     }
   }
 
-  .mid{
-    background-color: wheat;
+  .mid {
+    background-color: lightslategrey;
     text-align: center;
-  }
+    max-width: 500;
+    padding: 20px;
+    margin: auto;
+    border-radius: 8px;
+}
