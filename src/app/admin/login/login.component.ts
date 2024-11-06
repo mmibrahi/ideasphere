@@ -30,30 +30,45 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    this.service.login(this.loginForm).subscribe(
-      results => {
-        console.log(results);
-        if(results){
-          //navigate to dashboard
-          this.router.navigate(['dashboard']);
-          var value = 'Basic ' + btoa(this.loginForm.value.username + ':' + this.loginForm.value.password);
-          sessionStorage.setItem('loginCredentials', value);
-        }
-        else{
-          this.loginStatus = false;
-          this.loginForm.get('password').setValue("");
-          this.loginForm.get('password').markAsUntouched();
-        }
-     },
-        error => {
+    this.service.login(this.loginForm.value).subscribe(
+      (result: string) => {
+        console.log(result);
+        alert(result); // Displays "Successfully logged in" on success
+        this.router.navigate(['dashboard']);
+      },
+      error => {
         console.log(error);
-        this.loginStatus = false
-        this.loginForm.get('password').setValue("");
-        this.loginForm.get('password').markAsUntouched();
-
+        this.loginStatus = false;
       }
     )
   }
+  
+
+  // login(){
+  //   this.service.login(this.loginForm).subscribe(
+  //     results => {
+  //       console.log(results);
+  //       if(results){
+  //         //navigate to dashboard
+  //         this.router.navigate(['dashboard']);
+  //         var value = 'Basic ' + btoa(this.loginForm.value.username + ':' + this.loginForm.value.password);
+  //         sessionStorage.setItem('loginCredentials', value);
+  //       }
+  //       else{
+  //         this.loginStatus = false;
+  //         this.loginForm.get('password').setValue("");
+  //         this.loginForm.get('password').markAsUntouched();
+  //       }
+  //    },
+  //       error => {
+  //       console.log(error);
+  //       this.loginStatus = false
+  //       this.loginForm.get('password').setValue("");
+  //       this.loginForm.get('password').markAsUntouched();
+
+  //     }
+  //   )
+  // }
 
   
 }
