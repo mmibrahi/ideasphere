@@ -29,7 +29,7 @@ input[type=text], input[type=password] {
   
   /* Set a style for all buttons */
   button {
-    background-color: blue;
+    background-color: #3a4c5e;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -145,8 +145,9 @@ input[type=text], input[type=password] {
   }
 
   .mid {
-    background-color: lightslategrey;
+    background-color: #2d3e50;
     text-align: center;
+    color: white;
     max-width: 500;
     padding: 20px;
     margin: auto;

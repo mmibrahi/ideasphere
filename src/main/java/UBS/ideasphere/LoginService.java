@@ -9,7 +9,7 @@ public class LoginService {
     private UserRepository userRepository;
 
     public boolean validateUser(String username, String password) {
-        User user = userRepository.findByUsername(username);
+        UserDetails user = userRepository.findByUsername(username);
         return user != null && user.getPassword().equals(password);
     }
 }

@@ -12,7 +12,7 @@ public class LoginController {
     private LoginService loginService;
 
     @PostMapping
-    public ResponseEntity<String> loginUser(@RequestBody User user) {
+    public ResponseEntity<String> loginUser(@RequestBody UserDetails user) {
         boolean isValid = loginService.validateUser(user.getUsername(), user.getPassword());
         if (isValid) {
             return ResponseEntity.ok("Successfully logged in");

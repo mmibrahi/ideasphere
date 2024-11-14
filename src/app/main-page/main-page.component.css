@@ -1,0 +1,122 @@
+/* General styles for full page */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.main-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #f0f0f0;
+    padding: 20px;
+    height: 100vh;
+    width: 100vw;
+    box-sizing: border-box;
+}
+/* Header */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #2d3e50;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.profile-icon, .new-post-button {
+    background-color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+}
+
+.new-post-button {
+    padding: 10px 20px;
+    font-weight: bold;
+    color: #2d3e50;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Posts Section */
+.posts {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Make posts section take up remaining space */
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+    margin-top: 20px;
+    overflow-y: auto; /* Allows scrolling if posts exceed the available space */
+}
+
+.post {
+    display: flex;
+    align-items: center;
+    background-color: #3a4c5e;
+    color: white;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 8px;
+    width: 100%;
+}
+
+.user-icon {
+    background-color: #586776;
+    border-radius: 50%;
+    padding: 10px;
+    margin-right: 15px;
+}
+
+.post-content h3 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.post-content p {
+    margin: 5px 0 0;
+    font-size: 14px;
+}
+
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    max-width: 90%;
+    text-align: center;
+  }
+  
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  

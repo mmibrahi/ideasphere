@@ -17,5 +17,9 @@ export class HeaderComponent implements OnInit {
     var loginCredentials = sessionStorage.getItem('loginCredentials');
     return loginCredentials ? true : false;
   }
+
+  mainPage(){
+    window.location.href = "/main-page";
+  }
   
 }
