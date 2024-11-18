@@ -30,17 +30,32 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    this.service.login(this.loginForm.value).subscribe(
-      (result: string) => {
-        console.log(result);
-        alert(result); // Displays "Successfully logged in" on success
-        this.router.navigate(['dashboard']);
+    // this.service.login(this.loginForm.value).subscribe(
+    //   (result: string) => {
+    //     console.log(result);
+    //     alert(result); // Displays "Successfully logged in" on success
+    //     this.router.navigate(['dashboard']);
+    //   },
+    //   error => {
+    //     console.log(error);
+    //     this.loginStatus = false;
+    //   }
+    // )
+    this.router.navigate(['main-page']).then(
+      success => {
+        if (success) {
+          console.log('Navigation successful');
+        } else {
+          console.error('Navigation failed');
+        }
       },
       error => {
-        console.log(error);
-        this.loginStatus = false;
+        console.error('Error during navigation:', error);
       }
-    )
+    );
+    // console.log('Redirecting to main page without authentication...');
+    // this.router.navigate(['mainpage']);
+    
   }
   
 

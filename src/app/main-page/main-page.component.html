@@ -16,12 +16,27 @@
     </div>
 
     <div class="modal" *ngIf="isModalOpen">
-        <div class="modal-content">
-          <span class="close" (click)="closeNewPostModal()">&times;</span>
-          <h2>Create a New Post</h2>
-          <!-- FOR POSTING NEW POSTS -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="user-profile">
+            <div class="user-icon">User1</div>
+          </div>
+          <button class="post-button" (click)="postNewIdea()">Post</button>
         </div>
+        <div class="modal-body">
+          <h4>Choose a tag.</h4>
+          <div class="tags">
+            <button class="tag">Tech</button>
+            <button class="tag">Beauty</button>
+            <button class="tag">Sports</button>
+            <button class="tag">Entertainment</button>
+            <button class="tag">Others</button>
+          </div>
+          <textarea placeholder="Type your new idea here."></textarea>
+        </div>
+      </div>
     </div>
+    
       
   </div>
   
