@@ -103,14 +103,14 @@ html, body {
     background-color: rgba(0, 0, 0, 0.5);
   }
   
-  .modal-content {
+.modal-content {
     background-color: #fff;
-    padding: 20px;
+    padding: 30px;
     border-radius: 8px;
-    width: 300px;
+    width: 500px; /* Increased size */
     max-width: 90%;
     text-align: center;
-  }
+}
   
   .close {
     position: absolute;
@@ -118,5 +118,66 @@ html, body {
     right: 15px;
     font-size: 20px;
     cursor: pointer;
+  }
+  
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px; /* Space between tags */
+    margin-top: 20px;
+}
+
+/* Enlarging the text box */
+textarea {
+    width: 100%; /* Full width of the modal */
+    height: 120px; /* Increased height */
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none; /* Prevent resizing for consistent styling */
+}
+
+/* Updated tag button styling */
+.tag {
+    background-color: #e0e0e0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.tag:hover {
+    background-color: #d0d0d0; /* Slightly darker when hovered */
+}
+
+.tag.active {
+    background-color: #c0c0c0; /* Maintain the tint when pressed */
+    transform: scale(0.95); /* Slight shrink effect */
+}
+
+
+.back-button {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+  }
+  
+  .back-button:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .back-button:active {
+    transform: scale(0.95);
   }
   

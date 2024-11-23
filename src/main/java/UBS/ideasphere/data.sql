@@ -15,3 +15,15 @@ INSERT INTO user (username, password) VALUES ('user7', 'password7');
 INSERT INTO user (username, password) VALUES ('user8', 'password8');
 INSERT INTO user (username, password) VALUES ('user9', 'password9');
 INSERT INTO user (username, password) VALUES ('user10', 'password10');
+
+
+CREATE TABLE posts (
+    id VARCHAR(255) PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    tech BOOLEAN DEFAULT FALSE,
+    beauty BOOLEAN DEFAULT FALSE,
+    sports BOOLEAN DEFAULT FALSE,
+    entertainment BOOLEAN DEFAULT FALSE,
+    others BOOLEAN DEFAULT FALSE
+);

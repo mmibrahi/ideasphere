@@ -19,6 +19,7 @@ export class MainPageComponent {
   // ];
 
   isModalOpen = false;
+  showSuccessPopup = false; // Controls the success popup
 
   newPostTitle = '';
   newPostText = '';
@@ -37,11 +38,34 @@ export class MainPageComponent {
     this.selectedTag = '';
   }
 
-  postNewIdea() {
-    if (!this.newPostTitle || !this.newPostText || !this.selectedTag) {
-      alert('Please fill in all fields before posting.');
-      return;
-    }
+toggleActiveTag(event: MouseEvent): void {
+  const target = event.target as HTMLElement;
+  target.classList.toggle('active'); // Toggle the active class on the clicked button
+}
+
+  newPost = {
+    id: '',
+    username: 'User1', // Replace this with the actual logged-in user's username
+    description: '',
+    tags: {
+      tech: false,
+      beauty: false,
+      sports: false,
+      entertainment: false,
+      others: false,
+    },
+  };
+ 
+
+postNewIdea(): void {
+  // Check if all required fields are filled
+  const isTagSelected = Object.values(this.newPost.tags).some((value) => value);
+  const isDescriptionFilled = this.newPost.description.trim().length > 0;
+
+  if (!isDescriptionFilled) {
+    alert('Please fill in all fields before posting.');
+    return;
+  }
 
     const newPost = {
       id: uuidv4(),
