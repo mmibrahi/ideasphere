@@ -59,7 +59,7 @@ html, body {
     width: 100%;
     max-width: 800px;
     margin-top: 20px;
-    overflow-y: auto; /* Allows scrolling if posts exceed the available space */
+    overflow-y: auto; 
 }
 
 .post {
@@ -138,7 +138,7 @@ textarea {
     font-size: 14px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    resize: none; /* Prevent resizing for consistent styling */
+    resize: none;
 }
 
 /* Updated tag button styling */
@@ -157,8 +157,8 @@ textarea {
 }
 
 .tag.active {
-    background-color: #c0c0c0; /* Maintain the tint when pressed */
-    transform: scale(0.95); /* Slight shrink effect */
+    background-color: #c0c0c0; /* Maintains the tint when pressed */
+    transform: scale(0.95); 
 }
 
 
@@ -171,6 +171,7 @@ textarea {
     color: #333;
     cursor: pointer;
     transition: background-color 0.2s ease, transform 0.1s ease;
+    margin-left: auto;
   }
   
   .back-button:hover {
@@ -179,5 +180,34 @@ textarea {
   
   .back-button:active {
     transform: scale(0.95);
+  }
+
+  .success-popup {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    animation: fade-in-out 2s ease-in-out;
+  }
+  
+  @keyframes fade-in-out {
+    0% {
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
   }
   

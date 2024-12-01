@@ -1,44 +1,58 @@
 <div class="main-page-container">
-    <div class="header">
-      <div class="profile-icon">Profile</div>
-      <div class="title">Explore</div>
-      <button class="new-post-button" (click)="openNewPostModal()">New Post</button>
-    </div>
-    <div class="posts">
-      <div class="post">
-        <div class="user-icon">User 1</div>
-        <div class="post-content">
-          <h3>User 1</h3>
-          <p>I have a new idea...</p>
-        </div>
-      </div>
-      <!-- FOR POSTS STUFF -->
-    </div>
+  <div class="header">
+    <div class="profile-icon">Profile</div>
+    <div class="title">Explore</div>
+    <button class="new-post-button" (click)="openNewIdeaModal()">New Post</button>
+  </div>
 
-    <div class="modal" *ngIf="isModalOpen">
-      <div class="modal-content">
-        <div class="modal-header">
-          <div class="user-profile">
-            <div class="user-icon">User1</div>
-          </div>
-          <button class="post-button" (click)="postNewIdea()">Post</button>
-          <button class="back-button" (click)="closeNewPostModal()" style="position: absolute; right: 10px;">Back</button>
+  <div class="posts">
+    <!-- Loop through the 'ideas' array and display each idea -->
+    <div class="post" *ngFor="let idea of ideas">
+        <div class="user-icon">{{ idea.id }}</div>
+        <div class="post-content">
+            <h3>{{ idea.tagname }}</h3>
+            <p>{{ idea.content }}</p>
         </div>
-        <div class="modal-body">
-          <h4>Choose a tag.</h4>
-          <div class="tags">
-            <button class="tag" (click)="toggleActiveTag($event)">Tech</button>
-            <button class="tag" (click)="toggleActiveTag($event)">Beauty</button>
-            <button class="tag" (click)="toggleActiveTag($event)">Sports</button>
-            <button class="tag" (click)="toggleActiveTag($event)">Entertainment</button>
-            <button class="tag" (click)="toggleActiveTag($event)">Others</button>
-          </div>                   
-          <textarea placeholder="Type your new idea here."></textarea>
+    </div>
+</div>
+
+
+  <!-- Modal for adding a new idea -->
+  <div class="modal" *ngIf="isModalOpen">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="user-profile">
+          <div class="user-icon">User1</div>
         </div>
+        <button class="post-button" (click)="postNewIdea()">Post</button>
+        <button class="back-button" (click)="closeNewIdeaModal()">Back</button>
       </div>
+
+      <div class="modal-body">
+        <h4>Choose a tag.</h4>
+        <div class="tags">
+          <button
+            class="tag"
+            *ngFor="let tag of ['Tech', 'Beauty', 'Sports', 'Entertainment', 'Others']"
+            [class.active]="selectedTagname === tag"
+            (click)="selectTag(tag)"
+          >
+            {{ tag }}
+          </button>
+        </div>
+        <textarea
+          placeholder="Type your new idea here."
+          [(ngModel)]="newIdeaContent"
+        ></textarea>
       </div>
     </div>
-    
-      
+  </div>
+
+  <!-- Success Popup -->
+  <div class="success-popup" *ngIf="showSuccessPopup">
+    Successfully saved to database and posted!
+  </div>
+</div>
+
   
   

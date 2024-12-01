@@ -8,7 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { MainPageComponent } from './main-page/main-page.component';
-import { PostService } from './main-page/post.service';  // Import PostService
+import { IdeaService } from './Service/idea.service';
 
 
 @NgModule({
@@ -24,7 +24,7 @@ import { PostService } from './main-page/post.service';  // Import PostService
     HttpClientModule,
     SharedModule 
   ],
-  providers: [PostService],  // Register PostService hereproviders: [],
+  providers: [IdeaService],  
   bootstrap: [AppComponent]
 })
 export class AppModule { }

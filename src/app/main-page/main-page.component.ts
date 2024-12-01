@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-declare module 'uuid';
-import { PostService } from './post.service'; // Service to handle database operations
+import { Component , OnInit } from '@angular/core';
+// import ideaservice
+import { IdeaService } from '../Service/idea.service';
 import { v4 as uuidv4 } from 'uuid'; // Use UUID for unique ID generation
 
 @Component({
@@ -8,79 +8,84 @@ import { v4 as uuidv4 } from 'uuid'; // Use UUID for unique ID generation
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.css']
 })
-export class MainPageComponent {
+export class MainPageComponent implements OnInit {
 
-  posts: { id: string; title: string; text: string; tag: string }[] = [];
+  ideas: { id?: number; title: string; content: string; tagname: string }[] = [];
 
-  // posts: string[] = [
-  //   "I have a new idea!!!!!!!!!",
-  //   "A new idea that I would love to see implemented is a self-washing station in Qatar.",
-  //   "An idea that I was thinking of implementing is self-driving car driving schools."
-  // ];
-
-  isModalOpen = false;
+  isModalOpen = false; // Modal state
   showSuccessPopup = false; // Controls the success popup
 
-  newPostTitle = '';
-  newPostText = '';
-  selectedTag = '';
+  newIdeaTitle = ''; // Holds the new idea title
+  newIdeaContent = ''; // Holds the new idea content
+  selectedTagname = ''; // Holds the selected tagname
 
-  constructor(private postService: PostService) {}
+  constructor(private ideaService: IdeaService) {}
 
-  openNewPostModal() {
+  openNewIdeaModal() {
     this.isModalOpen = true;
   }
 
-  closeNewPostModal() {
+  closeNewIdeaModal() {
     this.isModalOpen = false;
-    this.newPostTitle = '';
-    this.newPostText = '';
-    this.selectedTag = '';
+    this.newIdeaTitle = '';
+    this.newIdeaContent = '';
+    this.selectedTagname = '';
   }
 
-toggleActiveTag(event: MouseEvent): void {
-  const target = event.target as HTMLElement;
-  target.classList.toggle('active'); // Toggle the active class on the clicked button
-}
-
-  newPost = {
-    id: '',
-    username: 'User1', // Replace this with the actual logged-in user's username
-    description: '',
-    tags: {
-      tech: false,
-      beauty: false,
-      sports: false,
-      entertainment: false,
-      others: false,
-    },
-  };
- 
-
-postNewIdea(): void {
-  // Check if all required fields are filled
-  const isTagSelected = Object.values(this.newPost.tags).some((value) => value);
-  const isDescriptionFilled = this.newPost.description.trim().length > 0;
-
-  if (!isDescriptionFilled) {
-    alert('Please fill in all fields before posting.');
-    return;
+  toggleActiveTag(event: MouseEvent): void {
+    const target = event.target as HTMLElement;
+    target.classList.toggle('active'); 
   }
 
-    const newPost = {
-      id: uuidv4(),
-      title: this.newPostTitle,
-      text: this.newPostText,
-      tag: this.selectedTag
+  selectTag(tag: string): void {
+    this.selectedTagname = tag; // Store the selected tag
+  }
+  
+  postNewIdea(): void {
+    const isTagSelected = this.selectedTagname.trim().length > 0;
+    const isContentFilled = this.newIdeaContent.trim().length > 0;
+  
+    if (!isTagSelected || !isContentFilled) {
+      alert('Please select a tag and fill in the content before posting.');
+      return;
+    }
+  
+    const newIdea = {
+      title: '', // Optional if not needed
+      content: this.newIdeaContent,
+      tagname: this.selectedTagname,
     };
-
-    // Save the post using the service
-    this.postService.savePost(newPost).subscribe(() => {
-      // Add the post to the local list after successful save
-      this.posts.push(newPost);
-      this.closeNewPostModal();
+  
+    this.ideaService.saveIdea(newIdea).subscribe({
+      next: () => {
+        this.ideas.push(newIdea);
+        this.closeNewIdeaModal();
+        this.showSuccessPopup = true;
+        this.fetchIdeas(); // Fetches the updated list of ideas  x.x.x.x.
+  
+        // Hides the popup after 2 seconds
+        setTimeout(() => (this.showSuccessPopup = false), 2000);
+      },
+      error: (err) => {
+        console.error('Error saving idea:', err);
+        alert('An error occurred while saving your idea. Please try again.');
+      },
     });
   }
+  
+  ngOnInit(): void {
+    this.fetchIdeas();
+  }
+
+  fetchIdeas(): void {
+    this.ideaService.getIdeas().subscribe({
+        next: (data) => {
+            this.ideas = data; // adds to an array all ideas
+        },
+        error: (err) => console.error('Error fetching ideas:', err)
+    });
+  }
+
 
 }
 
